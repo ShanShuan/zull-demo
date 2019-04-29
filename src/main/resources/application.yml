@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: gateway-zuul
+server:
+  port: 8012
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:29381/eureka
+#hystrix: #hystrix配置
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 2500
+#ribbon: #ribbon负载均衡参数配置
+#  ReadTimeout: 5000
+#  ConnectTimeout: 5000
+#zuul:
+#  routes:
+#    hello-service:
+#      path: /hello-service/**
+#      serviceId: HELLO-SERVICE
+zuul:
+  routes:
+    sesion-redis:
+      path: /sesion-redis/**
+      serviceId: SESION-REDIS
+      #解决转发后session  不共享
+      sensitiveHeaders: "*"
+
